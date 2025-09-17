@@ -1,4 +1,5 @@
-import React, { ReactNode, MouseEventHandler } from "react";
+import React from "react";
+import type { ReactNode, MouseEventHandler } from "react";
 
 interface Btn {
   name?: string;

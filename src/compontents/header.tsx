@@ -1,6 +1,6 @@
 import React from 'react'
-import Text from './text'
-import Search from "./search";
+import Text from './Text'
+import Search from "./Search";
 
 export default function Header() {
   return (

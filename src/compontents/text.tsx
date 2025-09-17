@@ -7,8 +7,8 @@ type props = {
 };
 
 const Text: React.FC<props> = ({ variant, children, className }) => {
-  if (variant === "h2") return <h2 className={className}>{children} </h2>;
-  if (variant === "p") return <p>{children}</p>;
+  if (variant === "h2") return <h2 className={className}>{children}</h2>;
+  if (variant === "p") return <p className={className}>{children}</p>;
     return (
     <div className={className}>{children}</div>
 );

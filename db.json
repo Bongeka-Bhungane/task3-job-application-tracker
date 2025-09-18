@@ -1,0 +1,16 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "title": "Frontend Developer",
+      "company": "Tech Corp",
+      "status": "applied"
+    },
+    {
+      "id": 2,
+      "title": "Backend Developer",
+      "company": "Code Labs",
+      "status": "interview"
+    }
+  ]
+}

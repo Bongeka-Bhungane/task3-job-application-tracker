@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react'
 import Text from "./Text";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Button from "./Button";
 
-export default function LoginForm() {
+export default function SignupForm() {
   return (
-    <div className="login-form">
+    <div>
       <div className="login-header">
         <Text variant="p">Do not have an account?</Text>
         <Text variant="p" className="signup-link">
@@ -27,6 +27,12 @@ export default function LoginForm() {
             <input type="email" placeholder="enter your email" />
           </div>
           <div className="form-input">
+            <label htmlFor="phone">
+              <MdEmail className="text-blue-600 text-2xl" />
+            </label>
+            <input type="email" placeholder="enter your cellphone" />
+          </div>
+          <div className="form-input">
             <label htmlFor="password">
               <RiLockPasswordLine />
             </label>
@@ -35,7 +41,7 @@ export default function LoginForm() {
         </div>
 
         <Button
-          name="Login"
+          name="Register"
           backgroundColor="#709176"
           color="white"
           className="btn"

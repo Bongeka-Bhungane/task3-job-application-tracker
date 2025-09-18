@@ -7,10 +7,11 @@ interface Btn {
   backgroundColor?: string;
   className?: string;
   icon?: ReactNode;
+  type?: "button" | "submit" | "reset" | undefined;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function Button({ name, color, className, icon, backgroundColor, onClick}: Btn) {
+export default function Button({ name, color, className, icon, backgroundColor, onClick, type}: Btn) {
   return (
     <div>
       <button
@@ -21,6 +22,7 @@ export default function Button({ name, color, className, icon, backgroundColor, 
           fontSize: "100%",
         }}
         className={className}
+        type={type}
       >
         {icon && <span>{icon}</span>}
         {name}

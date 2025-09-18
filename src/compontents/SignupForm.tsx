@@ -1,56 +1,62 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import Text from "./Text";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { Navigate } from "react-router-dom";
 // import Button from "./Button";
 
-const SignupForm: React.FC = () =>  {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [password, setPassword] = useState('');
+const SignupForm: React.FC = () => {
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [goToHome] = useState(false);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const newUser = { name, surname, email, phone, password };
-        try {
-            const response = await fetch("http://localhost:5000/users", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(newUser),
-            });
-            if (response.ok) {
-                const data = await response.json();
-                alert ('User registered successfully!');
-                setName('');
-                setSurname('');
-                setEmail('');
-                setPhone('');
-                setPassword('');
-            } else {
-                alert('Failed to register user.');
-            }
-        } catch (error) {
-            console.error('During registration:', error);
-            alert('An error occurred. Please try again.');
-        }
-    }; // <-- Add this closing brace for handleSubmit
+  if (goToHome) {
+    return <Navigate to="/login" />;
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const newUser = { name, surname, email, phone, password };
+    try {
+      const response = await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      });
+      if (response.ok) {
+        await response.json();
+        alert("User registered successfully!");
+        setName("");
+        setSurname("");
+        setEmail("");
+        setPhone("");
+        setPassword("");
+      } else {
+        alert("Failed to register user.");
+      }
+    } catch (error) {
+      console.error("During registration:", error);
+      alert("An error occurred. Please try again.");
+    }
+  }; // <-- Add this closing brace for handleSubmit
 
   return (
     <div>
       <div className="login-header">
-        <Text variant="p">Do not have an account?</Text>
-        <Text variant="p" className="signup-link">
-          Create one
+        <Text variant="p">Already  have an account?</Text>
+        <Text variant="span" className="signup-link" onClick={}>
+          Login!!
         </Text>
       </div>
 
       <Text variant="h2" className="login-heading">
-        Login
+        Signup
       </Text>
 
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="name-surname">
             <div className="form-input">
@@ -119,7 +125,7 @@ const SignupForm: React.FC = () =>  {
             />
           </div>
         </div>
-        <button onClick={handleSubmit}>sign in</button>
+        <button type="submit">Register</button>
       </form>
       {/* <Button
         name="Register"
@@ -131,6 +137,6 @@ const SignupForm: React.FC = () =>  {
       /> */}
     </div>
   );
-}   
+};
 
 export default SignupForm;

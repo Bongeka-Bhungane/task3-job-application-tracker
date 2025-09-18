@@ -110,12 +110,13 @@ export default function JobForm({ onJobAdded }: JobFormProps) {
         <input
           type="text"
           placeholder="job notes"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
           required
         />
-        <button>submit</button>
-        <button>clear</button>
+        <button type='submit'
+        onClick={handleSubmit}
+        >submit</button>
       </form>
     </div>
   );

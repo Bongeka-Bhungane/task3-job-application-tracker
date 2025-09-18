@@ -8,10 +8,10 @@ import { Navigate } from "react-router-dom";
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [goToHome, setGoToHome] = useState(false);
+  const [goToHome, setGoToJobs] = useState(false);
 
   if (goToHome) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/jobs" />;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -87,7 +87,7 @@ const LoginForm: React.FC = () => {
             />
           </div>
         </div>
-        <button type="submit" onClick={() => setGoToHome(true)}>
+        <button type="submit" onClick={() => setGoToJobs(true)}>
           login
         </button>
         {/* <Button

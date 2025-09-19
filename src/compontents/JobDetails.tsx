@@ -5,7 +5,13 @@ type Job = {
   title: string;
   company: string;
   applicationDate: string;
-  status: "applied" | "interviewed" | "denied";
+  status: string;
+  contactInfo: string;
+  location: string;
+  description: string;
+  requirements: string;
+  duties: string;
+  notes: string;
 };
 
 export default function JobDetails() {
@@ -26,27 +32,6 @@ export default function JobDetails() {
     fetchJobs();
   }, []);
 
-  // Update job status
-  const handleStatusChange = async (id: number, newStatus: Job["status"]) => {
-    try {
-      // Update on server
-      const res = await fetch(`http://localhost:5000/jobs/${id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
-      });
-
-      if (!res.ok) throw new Error("Failed to update status");
-
-      // Update locally
-      setJobs((prev) =>
-        prev.map((job) => (job.id === id ? { ...job, status: newStatus } : job))
-      );
-    } catch (error) {
-      console.error("Error updating status:", error);
-    }
-  };
-
   return (
     <div>
       {jobs.length === 0 ? (
@@ -64,23 +49,36 @@ export default function JobDetails() {
           >
             <h3>{job.title}</h3>
             <p>
-              <strong>Company:</strong> {job.company}
+              <strong>Company: </strong> {job.company}
             </p>
             <p>
-              <strong>Date:</strong> {job.applicationDate}
+              <strong>Date: </strong> {job.applicationDate}
             </p>
             <p>
-              <strong>Status:</strong>{" "}
-              <select
-                value={job.status}
-                onChange={(e) =>
-                  handleStatusChange(job.id, e.target.value as Job["status"])
-                }
-              >
-                <option value="applied">Applied</option>
-                <option value="interviewed">Interviewed</option>
-                <option value="denied">Denied</option>
-              </select>
+              <strong>Status: </strong> {job.status}
+            </p>
+            <p>
+              <strong>Contact info: </strong> {job.contactInfo}
+            </p>
+            <p>
+              <strong>Location: </strong>
+              {job.location}
+            </p>
+            <p>
+              <strong>Description: </strong>
+              {job.description}
+            </p>
+            <p>
+              <strong>Requirements: </strong>
+              {job.requirements}
+            </p>
+            <p>
+              <strong>Duties: </strong>
+              {job.duties}
+            </p>
+            <p>
+              <strong>Notes: </strong>
+              {job.notes}
             </p>
           </div>
         ))

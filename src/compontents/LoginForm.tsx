@@ -8,9 +8,9 @@ import { Navigate } from "react-router-dom";
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [goToHome, setGoToJobs] = useState(false);
+  const [goToJobs, setGoToJobs] = useState(false);
 
-  if (goToHome) {
+  if (goToJobs) {
     return <Navigate to="/jobs" />;
   }
 

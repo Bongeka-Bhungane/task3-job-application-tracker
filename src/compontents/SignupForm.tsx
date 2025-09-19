@@ -5,43 +5,62 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { Navigate } from "react-router-dom";
 // import Button from "./Button";
 
-const SignupForm: React.FC = () => {
+interface SignupFormProps {
+  onSignup: () => void;
+}
+const SignupForm: React.FC<SignupFormProps> = ({ onSignup }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [goToHome] = useState(false);
+  const [goToLogin, setGoToLogin] = useState(false);
 
-  if (goToHome) {
+  if (goToLogin) {
     return <Navigate to="/login" />;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newUser = { name, surname, email, phone, password };
-    try {
-      const response = await fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser),
-      });
-      if (response.ok) {
-        await response.json();
-        alert("User registered successfully!");
-        setName("");
-        setSurname("");
-        setEmail("");
-        setPhone("");
-        setPassword("");
-      } else {
-        alert("Failed to register user.");
-      }
-    } catch (error) {
-      console.error("During registration:", error);
-      alert("An error occurred. Please try again.");
-    }
-  }; // <-- Add this closing brace for handleSubmit
+
+     try {
+       // 🔹 Check if user already exists
+       const checkRes = await fetch(
+         `http://localhost:5000/users?email=${email}`
+       );
+       const existing = await checkRes.json();
+
+       if (existing.length > 0) {
+         alert("Email already registered!");
+         return;
+       }
+
+       const newUser = { name, surname, email, phone, password, jobs: [] };
+
+       const createRes = await fetch("http://localhost:5000/users", {
+         method: "POST",
+         headers: { "Content-Type": "application/json" },
+         body: JSON.stringify(newUser),
+       });
+
+       const user = await createRes.json(); // ← this has numeric `id`
+       localStorage.setItem("user", JSON.stringify(user));
+
+       if (createRes.ok) {
+         alert("User registered successfully!");
+         setName("");
+         setSurname("");
+         setEmail("");
+         setPhone("");
+         setPassword("");
+       } else {
+         alert("Failed to register user.");
+       }
+     } catch (error) {
+       console.error("During registration:", error);
+       alert("An error occurred. Please try again.");
+     }
+  };
 
   return (
     <div>
@@ -125,7 +144,9 @@ const SignupForm: React.FC = () => {
             />
           </div>
         </div>
-        <button type="submit">Register</button>
+        <button type="submit"
+        onClick={() => setGoToLogin(true)}
+        >Register</button>
       </form>
       {/* <Button
         name="Register"

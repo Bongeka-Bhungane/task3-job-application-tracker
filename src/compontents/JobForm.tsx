@@ -19,16 +19,35 @@ export default function JobForm({ onJobAdded }: JobFormProps) {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const newJob = { title, company, status, applicationDate, contactInfo, location, description, requirements, duties, notes };
 
-        const res =  await fetch("http://localhost:5000/jobs", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newJob),
+        const storedUser = localStorage.getItem("user");
+        if (!storedUser) {
+            alert("User not logged in");
+            return;
+        }
+
+        const user = JSON.parse(storedUser);
+        const newJob = { id: Date.now(), title, company, status, applicationDate, contactInfo, location, description, requirements, duties, notes };
+
+        const updatedJobs = [...(user.jobs || []), newJob];
+        const updatedUser = { ...user, jobs: updatedJobs };
+
+        const res = await fetch(`http://localhost:5000/users/${Number(user.id)}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ jobs: updatedJobs }),
         });
 
+        if (!res.ok) {
+          alert("Failed to add job");
+          return;
+        }
+
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        onJobAdded(newJob);
+
         const data = await res.json();
-        onJobAdded(data);
+        console.log("Job added:", data);
         setTitle("");
         setCompany("");
         setStatus("");

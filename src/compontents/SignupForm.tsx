@@ -47,7 +47,7 @@ const SignupForm: React.FC = () => {
     <div>
       <div className="login-header">
         <Text variant="p">Already  have an account?</Text>
-        <Text variant="span" className="signup-link" onClick={}>
+        <Text variant="span" className="signup-link">
           Login!!
         </Text>
       </div>

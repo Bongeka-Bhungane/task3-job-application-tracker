@@ -1,5 +1,6 @@
 import React from 'react'
 import JobForm from '../compontents/JobForm'
+import JobListCard from '../compontents/JobListCard';
 
 export default function JobLists() {
   return (
@@ -8,6 +9,7 @@ export default function JobLists() {
               // Handle the added job, e.g., log it or update state
               alert('Job: ' + JSON.stringify(job.title) + ' at ' + JSON.stringify(job.company) + ' added successfully!');
           }} />
+        <JobListCard />
     </div>
   )
 }

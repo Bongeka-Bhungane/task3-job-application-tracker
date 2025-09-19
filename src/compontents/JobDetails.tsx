@@ -8,7 +8,7 @@ type Job = {
   status: "applied" | "interviewed" | "denied";
 };
 
-export default function JobListCard() {
+export default function JobDetails() {
   const [jobs, setJobs] = useState<Job[]>([]);
 
   // Fetch jobs when component loads

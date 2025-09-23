@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Job, User } from "../types";
+import Modal from "react-modal";
+import Button from "./Button";
+import JobDetails from "./JobDetails";
 
 interface JobListCardProps {
   jobs: Job[];
@@ -7,6 +10,8 @@ interface JobListCardProps {
 }
 
 export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
+  const [openJobId, setOpenJobId] = useState<number | null>(null); // track which job's modal is open
+
   const handleStatusChange = async (id: number, newStatus: Job["status"]) => {
     const storedUser = localStorage.getItem("user");
     if (!storedUser) return;
@@ -70,6 +75,37 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
             <p>
               <strong>Contact Info:</strong> {job.contactInfo}
             </p>
+            <p>
+              <strong>Location:</strong> {job.location || "N/A"}
+            </p>
+
+            <div className="button-container">
+              <Button
+                name="View More"
+                color="#fff"
+                backgroundColor="#007BFF"
+                onClick={() => setOpenJobId(job.id)}
+              />
+            </div>
+
+            {/* Modal */}
+            <Modal
+              isOpen={openJobId === job.id}
+              onRequestClose={() => setOpenJobId(null)}
+              style={{
+                overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
+                content: { width: "50%", height: "50%", margin: "auto" },
+              }}
+              ariaHideApp={false}
+            >
+              <JobDetails job={job} setJobs={setJobs} />
+              <Button
+                name="Close"
+                color="#fff"
+                backgroundColor="#DC3545"
+                onClick={() => setOpenJobId(null)}
+              />
+            </Modal>
           </div>
         ))
       )}

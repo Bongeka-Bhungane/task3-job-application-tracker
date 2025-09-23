@@ -2,7 +2,7 @@ import React from "react";
 import type { ReactNode, MouseEventHandler } from "react";
 
 interface Btn {
-  name?: string;
+  name: string;
   color: string;
   backgroundColor?: string;
   className?: string;

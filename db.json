@@ -1,3 +1,27 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "0155",
+      "name": "Bongeka",
+      "surname": "Bhungane",
+      "email": "angelabhungane@gmail.com",
+      "phone": "0832964212",
+      "password": "2001",
+      "jobs": [
+        {
+          "id": 1758610053702,
+          "title": "jrn dev",
+          "company": "transnet",
+          "status": "interviewed",
+          "applicationDate": "2025-09-01",
+          "contactInfo": "transnet@gmail.net",
+          "location": "durban",
+          "description": "gjyrkktry",
+          "requirements": "dzdhjtr",
+          "duties": "tdjytdd",
+          "notes": "jhdgtzasht"
+        }
+      ]
+    }
+  ]
 }

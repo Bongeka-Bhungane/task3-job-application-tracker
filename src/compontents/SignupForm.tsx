@@ -3,11 +3,11 @@ import Text from "./Text";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Navigate } from "react-router-dom";
-// import Button from "./Button";
 
 interface SignupFormProps {
   onSignup: () => void;
 }
+
 const SignupForm: React.FC<SignupFormProps> = ({ onSignup }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -23,49 +23,55 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSignup }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-     try {
-       // 🔹 Check if user already exists
-       const checkRes = await fetch(
-         `http://localhost:5000/users?email=${email}`
-       );
-       const existing = await checkRes.json();
+    try {
+      // 🔹 Check if user already exists
+      const checkRes = await fetch(
+        `http://localhost:5000/users?email=${email}`
+      );
+      const existing = await checkRes.json();
 
-       if (existing.length > 0) {
-         alert("Email already registered!");
-         return;
-       }
+      if (existing.length > 0) {
+        alert("Email already registered!");
+        return;
+      }
 
-       const newUser = { name, surname, email, phone, password, jobs: [] };
+      const newUser = { name, surname, email, phone, password, jobs: [] };
 
-       const createRes = await fetch("http://localhost:5000/users", {
-         method: "POST",
-         headers: { "Content-Type": "application/json" },
-         body: JSON.stringify(newUser),
-       });
+      const createRes = await fetch("http://localhost:5000/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      });
 
-       const user = await createRes.json(); // ← this has numeric `id`
-       localStorage.setItem("user", JSON.stringify(user));
+      if (!createRes.ok) {
+        alert("Failed to register user.");
+        return;
+      }
 
-       if (createRes.ok) {
-         alert("User registered successfully!");
-         setName("");
-         setSurname("");
-         setEmail("");
-         setPhone("");
-         setPassword("");
-       } else {
-         alert("Failed to register user.");
-       }
-     } catch (error) {
-       console.error("During registration:", error);
-       alert("An error occurred. Please try again.");
-     }
+      const user = await createRes.json(); // ← this has numeric `id`
+      localStorage.setItem("user", JSON.stringify(user));
+
+      alert("User registered successfully!");
+
+      // ✅ only redirect AFTER success
+      setGoToLogin(true);
+
+      // reset form
+      setName("");
+      setSurname("");
+      setEmail("");
+      setPhone("");
+      setPassword("");
+    } catch (error) {
+      console.error("During registration:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
     <div>
       <div className="login-header">
-        <Text variant="p">Already  have an account?</Text>
+        <Text variant="p">Already have an account?</Text>
         <Text variant="span" className="signup-link">
           Login!!
         </Text>
@@ -123,7 +129,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSignup }) => {
               <MdEmail className="text-blue-600 text-2xl" />
             </label>
             <input
-              type="cellphone"
+              type="text"
               placeholder="enter your cellphone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -144,18 +150,10 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSignup }) => {
             />
           </div>
         </div>
-        <button type="submit"
-        onClick={() => setGoToLogin(true)}
-        >Register</button>
+
+        {/* ✅ remove onClick, let handleSubmit control navigation */}
+        <button type="submit">Register</button>
       </form>
-      {/* <Button
-        name="Register"
-        backgroundColor="#709176"
-        color="white"
-        className="btn"
-        onClick={handleSubmit}
-        type="submit"
-      /> */}
     </div>
   );
 };

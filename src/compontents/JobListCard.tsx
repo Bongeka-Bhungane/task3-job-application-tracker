@@ -6,42 +6,65 @@ type Job = {
   company: string;
   applicationDate: string;
   status: "applied" | "interviewed" | "denied";
+  contactInfo: string;
+  location: string;
+  description: string;
+  requirements: string;
+  duties: string;
+  notes: string;
 };
 
 export default function JobListCard() {
   const [jobs, setJobs] = useState<Job[]>([]);
 
-  // Fetch jobs when component loads
+  // ✅ Load jobs for logged-in user
   useEffect(() => {
-    const fetchJobs = async () => {
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) return;
+
+    const user = JSON.parse(storedUser);
+
+    // fetch latest user with jobs from server
+    const fetchUserJobs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/jobs");
-        const data: Job[] = await res.json();
-        setJobs(data);
+        const res = await fetch(`http://localhost:5000/users/${user.id}`);
+        if (!res.ok) throw new Error("Failed to fetch user jobs");
+
+        const freshUser = await res.json();
+        setJobs(freshUser.jobs || []);
       } catch (error) {
         console.error("Error fetching jobs:", error);
       }
     };
 
-    fetchJobs();
+    fetchUserJobs();
   }, []);
 
-  // Update job status
+  // ✅ Update job status
   const handleStatusChange = async (id: number, newStatus: Job["status"]) => {
     try {
-      // Update on server
-      const res = await fetch(`http://localhost:5000/jobs/${id}`, {
+      const storedUser = localStorage.getItem("user");
+      if (!storedUser) return;
+      const user = JSON.parse(storedUser);
+
+      const updatedJobs = jobs.map((job) =>
+        job.id === id ? { ...job, status: newStatus } : job
+      );
+
+      // update user on server
+      const res = await fetch(`http://localhost:5000/users/${user.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: newStatus }),
+        body: JSON.stringify({ jobs: updatedJobs }),
       });
 
-      if (!res.ok) throw new Error("Failed to update status");
+      if (!res.ok) throw new Error("Failed to update job status");
 
-      // Update locally
-      setJobs((prev) =>
-        prev.map((job) => (job.id === id ? { ...job, status: newStatus } : job))
-      );
+      setJobs(updatedJobs);
+
+      // update localStorage user copy
+      const updatedUser = { ...user, jobs: updatedJobs };
+      localStorage.setItem("user", JSON.stringify(updatedUser));
     } catch (error) {
       console.error("Error updating status:", error);
     }
@@ -67,7 +90,7 @@ export default function JobListCard() {
               <strong>Company:</strong> {job.company}
             </p>
             <p>
-              <strong>Date:</strong> {job.applicationDate}
+              <strong>Date Applied:</strong> {job.applicationDate}
             </p>
             <p>
               <strong>Status:</strong>{" "}
@@ -81,6 +104,24 @@ export default function JobListCard() {
                 <option value="interviewed">Interviewed</option>
                 <option value="denied">Denied</option>
               </select>
+            </p>
+            <p>
+              <strong>Contact Info:</strong> {job.contactInfo}
+            </p>
+            <p>
+              <strong>Location:</strong> {job.location}
+            </p>
+            <p>
+              <strong>Description:</strong> {job.description}
+            </p>
+            <p>
+              <strong>Requirements:</strong> {job.requirements}
+            </p>
+            <p>
+              <strong>Duties:</strong> {job.duties}
+            </p>
+            <p>
+              <strong>Notes:</strong> {job.notes}
             </p>
           </div>
         ))

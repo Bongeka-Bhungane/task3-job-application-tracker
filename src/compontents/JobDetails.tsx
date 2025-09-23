@@ -7,11 +7,6 @@ type Job = {
   applicationDate: string;
   status: string;
   contactInfo: string;
-  location: string;
-  description: string;
-  requirements: string;
-  duties: string;
-  notes: string;
 };
 
 export default function JobDetails() {
@@ -59,26 +54,6 @@ export default function JobDetails() {
             </p>
             <p>
               <strong>Contact info: </strong> {job.contactInfo}
-            </p>
-            <p>
-              <strong>Location: </strong>
-              {job.location}
-            </p>
-            <p>
-              <strong>Description: </strong>
-              {job.description}
-            </p>
-            <p>
-              <strong>Requirements: </strong>
-              {job.requirements}
-            </p>
-            <p>
-              <strong>Duties: </strong>
-              {job.duties}
-            </p>
-            <p>
-              <strong>Notes: </strong>
-              {job.notes}
             </p>
           </div>
         ))

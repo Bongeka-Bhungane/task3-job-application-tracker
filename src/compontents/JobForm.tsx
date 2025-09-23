@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import type { Job, User } from "../types";
 
 interface JobFormProps {
-  onJobAdded: (job: any) => void;
+  onJobAdded: (job: Job) => void;
 }
 
 export default function JobForm({ onJobAdded }: JobFormProps) {
   const [title, setTitle] = useState("");
   const [company, setCompany] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState<"applied" | "interviewed" | "denied">(
+    "applied"
+  );
   const [applicationDate, setApplicationDate] = useState("");
   const [contactInfo, setContactInfo] = useState("");
   const [location, setLocation] = useState("");
@@ -25,16 +28,9 @@ export default function JobForm({ onJobAdded }: JobFormProps) {
       return;
     }
 
-    const user = JSON.parse(storedUser);
+    const user: User = JSON.parse(storedUser);
 
-    // ✅ Ensure we have a valid user ID
-    if (!user.id || isNaN(Number(user.id))) {
-      alert("Invalid user. Please log in again.");
-      localStorage.removeItem("user");
-      return;
-    }
-
-    const newJob = {
+    const newJob: Job = {
       id: Date.now(),
       title,
       company,
@@ -50,7 +46,6 @@ export default function JobForm({ onJobAdded }: JobFormProps) {
 
     const updatedJobs = [...(user.jobs || []), newJob];
 
-    // PATCH request to update user's jobs
     const res = await fetch(`http://localhost:5000/users/${user.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -62,18 +57,14 @@ export default function JobForm({ onJobAdded }: JobFormProps) {
       return;
     }
 
-    const updatedUser = await res.json();
-
-    // ✅ Save updated user (with correct jobs + id) back to localStorage
+    const updatedUser: User = await res.json();
     localStorage.setItem("user", JSON.stringify(updatedUser));
-
     onJobAdded(newJob);
-    console.log("Job added:", updatedUser);
 
     // Reset form
     setTitle("");
     setCompany("");
-    setStatus("");
+    setStatus("applied");
     setApplicationDate("");
     setContactInfo("");
     setLocation("");
@@ -84,80 +75,72 @@ export default function JobForm({ onJobAdded }: JobFormProps) {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="company"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="position"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="status"
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          required
-        />
-        <input
-          type="date"
-          placeholder="application date"
-          value={applicationDate}
-          onChange={(e) => setApplicationDate(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="company contact info"
-          value={contactInfo}
-          onChange={(e) => setContactInfo(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="job location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="job description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="job requirements"
-          value={requirements}
-          onChange={(e) => setRequirements(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="job duties"
-          value={duties}
-          onChange={(e) => setDuties(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="job notes"
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          required
-        />
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Company"
+        value={company}
+        onChange={(e) => setCompany(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Role"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        required
+      />
+      <select
+        value={status}
+        onChange={(e) => setStatus(e.target.value as Job["status"])}
+      >
+        <option value="applied">Applied</option>
+        <option value="interviewed">Interviewed</option>
+        <option value="denied">Denied</option>
+      </select>
+      <input
+        type="date"
+        value={applicationDate}
+        onChange={(e) => setApplicationDate(e.target.value)}
+        required
+      />
+      <input
+        type="text"
+        placeholder="Contact Info"
+        value={contactInfo}
+        onChange={(e) => setContactInfo(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Location"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Requirements"
+        value={requirements}
+        onChange={(e) => setRequirements(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Duties"
+        value={duties}
+        onChange={(e) => setDuties(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Notes"
+        value={notes}
+        onChange={(e) => setNotes(e.target.value)}
+      />
+      <button type="submit">Add Job</button>
+    </form>
   );
 }

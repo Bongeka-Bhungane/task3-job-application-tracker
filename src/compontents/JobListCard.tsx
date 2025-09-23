@@ -10,7 +10,7 @@ interface JobListCardProps {
 }
 
 export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
-  const [openJobId, setOpenJobId] = useState<number | null>(null); // track which job's modal is open
+  const [openJobId, setOpenJobId] = useState<number | null>(null);
 
   const handleStatusChange = async (id: number, newStatus: Job["status"]) => {
     const storedUser = localStorage.getItem("user");
@@ -33,8 +33,37 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
     }
 
     setJobs(updatedJobs);
-    const updatedUser: User = { ...user, jobs: updatedJobs };
-    localStorage.setItem("user", JSON.stringify(updatedUser));
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ ...user, jobs: updatedJobs })
+    );
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!window.confirm("Are you sure you want to delete this job?")) return;
+
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) return;
+    const user: User = JSON.parse(storedUser);
+
+    const updatedJobs = jobs.filter((job) => job.id !== id);
+
+    const res = await fetch(`http://localhost:5000/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ jobs: updatedJobs }),
+    });
+
+    if (!res.ok) {
+      alert("Failed to delete job");
+      return;
+    }
+
+    setJobs(updatedJobs);
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ ...user, jobs: updatedJobs })
+    );
   };
 
   return (
@@ -79,12 +108,21 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
               <strong>Location:</strong> {job.location || "N/A"}
             </p>
 
-            <div className="button-container">
+            <div
+              className="button-container"
+              style={{ display: "flex", gap: "10px" }}
+            >
               <Button
                 name="View More"
                 color="#fff"
                 backgroundColor="#007BFF"
                 onClick={() => setOpenJobId(job.id)}
+              />
+              <Button
+                name="Delete"
+                color="#fff"
+                backgroundColor="#DC3545"
+                onClick={() => handleDelete(job.id)}
               />
             </div>
 

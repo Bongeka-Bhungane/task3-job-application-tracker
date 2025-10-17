@@ -58,11 +58,6 @@ This project was built as part of **Task 3 - ReactTS Coursework**.
 
 ---
 
-##  Folder Structure (example)
-
-
----
-
 ##  Setup & Run Locally
 
 1. Clone the repository

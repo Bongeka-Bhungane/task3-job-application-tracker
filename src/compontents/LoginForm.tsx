@@ -42,19 +42,19 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="login-form">
-      <div className="login-header">
+    <div className="form">
+      <div className="form-header">
         <Text variant="p">Do not have an account?</Text>
-        <Text variant="p" className="signup-link">
-          Create one
+        <Text variant="span" className="signup-link">
+          Create one!!
         </Text>
       </div>
 
-      <Text variant="h2" className="login-heading">
+      <Text variant="h2" className="heading">
         Login
       </Text>
 
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form"onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="form-input">
             <label htmlFor="email">
@@ -90,12 +90,6 @@ const LoginForm: React.FC = () => {
         <button type="submit" onClick={() => setGoToJobs(true)}>
           login
         </button>
-        {/* <Button
-                name="Login"
-                backgroundColor="#709176"
-                color="white"
-                className="btn"
-                /> */}
       </form>
     </div>
   );

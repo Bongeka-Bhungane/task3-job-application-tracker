@@ -70,18 +70,18 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSignup }) => {
 
   return (
     <div>
-      <div className="login-header">
+      <div className="form-header">
         <Text variant="p">Already have an account?</Text>
         <Text variant="span" className="signup-link">
           Login!!
         </Text>
       </div>
 
-      <Text variant="h2" className="login-heading">
+      <Text variant="h2" className="heading">
         Signup
       </Text>
 
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <div className="form-inputs">
           <div className="name-surname">
             <div className="form-input">

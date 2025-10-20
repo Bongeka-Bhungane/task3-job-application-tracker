@@ -10,7 +10,6 @@ body,
 #root {
   width: 100%;
   height: 100%;
-  padding: 5px;
 }
 
 .app {
@@ -20,102 +19,142 @@ body,
   height: 100%;
 }
 
-.login-header {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  font-family: "Epunda Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
-  margin: 2% 0 5% 0;
+.form {
+  width: 90%;
+  height: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
 }
 
-.login-heading {
-  font-family: "Epunda Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-size: 60px;
+.form-header {
   display: flex;
-  justify-content: center; /* horizontal */
+  justify-content: center;
   align-items: center;
-  margin-right: 50%;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 .signup-link {
   color: #9c7178;
-  font-weight: 700;
-  text-decoration: underline;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-.login-form {
-  width: 100%;
-  height: 100%;
+.heading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 5rem;
+  color: #111827;
+}
+
+.form-inputs {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
-.login-form input {
-  padding: 10px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 4px;
-  background: #709176;
+/* Name & Surname side by side */
+.name-surname {
+  display: flex;
+  gap: 1rem;
 }
 
-.login-form ::placeholder {
-  color: white;
-  font-size: medium;
-  font-family: "Epunda Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+.name-surname .form-input {
+  flex: 1;
 }
 
-.btn {
-  margin-top: 2%;
-  margin-left: 15%;
-  border: none;
-  outline: none;
-  width: 20%;
-  border-radius: 30px;
-  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
-  padding: 2%;
-  cursor: pointer;
-}
-
-.btn:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.btn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
+/* Individual input styling */
 .form-input {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 10px;
-  width: 60%;
-  padding: 0 10px;
+  gap: 5rem;
+  background: #709176;
+  color: white;
+  border: 1px solid #f4f6f8;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.form-input input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 2rem;
+  background: transparent;
+}
+
+.form-input input::placeholder {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+/* Button styling */
+button[type="submit"] {
+  display: block;
+  width: 30%;
+  margin: 1.5rem auto 0;
+  padding: 0.7rem 1rem;
   background-color: #709176;
-  border-radius: 10px;
-  margin: 10px 0;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.login-page-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 100%;
+button[type="submit"]:hover {
+  background-color: #52795f;
 }
 
-.login-content-left {
-    width: 60%;
+.signup-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
-.login-content-right {
-    width: 40%;
-    background-color: #52796F;
+.signup-content-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+}
+
+.signup-content-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+  background-color: #52795f;
+  gap: 6.5rem;
+}
+
+.right-logo {
+  width: 100%;
+  height: 30%;
+}
+
+.signup-content-right img {
+  width: 60%;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.right-slogan {
+  width: 100%;
+  height: 70%;
+  font-size: 2rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 2%;
 }

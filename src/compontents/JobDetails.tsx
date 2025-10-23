@@ -1,4 +1,3 @@
-// JobDetails.tsx
 import React from "react";
 import type { Job } from "../types";
 
@@ -7,15 +6,28 @@ interface JobDetailsProps {
   setJobs: React.Dispatch<React.SetStateAction<Job[]>>;
 }
 
-export default function JobDetails({ job, setJobs }: JobDetailsProps) {
+export default function JobDetails({ job }: JobDetailsProps) {
   return (
-    <div>
+    <div className="job-details">
       <h2>{job.title}</h2>
       <p>
         <strong>Company:</strong> {job.company}
       </p>
       <p>
-        <strong>Status:</strong> {job.status}
+        <strong>Status:</strong>{" "}
+        <span
+          style={{
+            color:
+              job.status === "applied"
+                ? "#2563eb" // blue
+                : job.status === "interviewed"
+                ? "#16a34a" // green
+                : "#dc2626", // red
+            fontWeight: "bold",
+          }}
+        >
+          {job.status || "N/A"}
+        </span>
       </p>
       <p>
         <strong>Date Applied:</strong> {job.applicationDate}

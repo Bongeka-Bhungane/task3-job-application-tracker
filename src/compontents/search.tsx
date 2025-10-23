@@ -1,57 +1,40 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
+import type { Job } from "../types"; // ✅ Import type
 
 interface SearchProps {
-  jobs: any[];
-  onSearch: (filteredJobs: any[]) => void;
+  jobs: Job[];
+  onSearch: (filteredJobs: Job[]) => void;
 }
 
-export default function Search({ jobs = [], onSearch }: SearchProps) {
+export default function Search({ jobs, onSearch }: SearchProps) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialQuery = searchParams.get("q") || "";
-  const [query, setQuery] = useState(initialQuery);
+  const [query, setQuery] = useState(searchParams.get("q") || "");
 
-  // 🔍 Filter jobs
   const handleSearch = useCallback(
     (q: string) => {
-      const lowerQ = q.toLowerCase().trim();
-
-      if (!lowerQ) {
-        onSearch(jobs); // show all if empty
-        return;
-      }
-
       const filtered = jobs.filter(
         (job) =>
-          job.company?.toLowerCase().includes(lowerQ) ||
-          job.title?.toLowerCase().includes(lowerQ)
+          job.company.toLowerCase().includes(q.toLowerCase()) ||
+          job.title.toLowerCase().includes(q.toLowerCase())
       );
       onSearch(filtered);
     },
     [jobs, onSearch]
   );
 
-  // ✅ Run search when jobs or query changes
   useEffect(() => {
     handleSearch(query);
-  }, [query, jobs, handleSearch]);
-
-  // ✅ Only update URL when the query actually changes (prevents flickering)
-  useEffect(() => {
-    const currentQ = searchParams.get("q") || "";
-    if (query !== currentQ) {
-      if (query) setSearchParams({ q: query });
-      else setSearchParams({});
-    }
-  }, [query, searchParams, setSearchParams]);
+    setSearchParams(query ? { q: query } : {});
+  }, [query, handleSearch, setSearchParams]);
 
   return (
     <input
       type="text"
-      className="search-input"
-      placeholder="Search by company or role..."
+      placeholder="Search by company or role"
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      style={{ marginBottom: "20px", padding: "8px", width: "300px" }}
     />
   );
 }

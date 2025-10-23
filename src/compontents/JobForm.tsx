@@ -61,7 +61,6 @@ export default function JobForm({ onJobAdded }: JobFormProps) {
     localStorage.setItem("user", JSON.stringify(updatedUser));
     onJobAdded(newJob);
 
-    // Reset form
     setTitle("");
     setCompany("");
     setStatus("applied");
@@ -75,72 +74,77 @@ export default function JobForm({ onJobAdded }: JobFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Company"
-        value={company}
-        onChange={(e) => setCompany(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Role"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-      />
-      <select
-        value={status}
-        onChange={(e) => setStatus(e.target.value as Job["status"])}
-      >
-        <option value="applied">Applied</option>
-        <option value="interviewed">Interviewed</option>
-        <option value="denied">Denied</option>
-      </select>
-      <input
-        type="date"
-        value={applicationDate}
-        onChange={(e) => setApplicationDate(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Contact Info"
-        value={contactInfo}
-        onChange={(e) => setContactInfo(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Location"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Requirements"
-        value={requirements}
-        onChange={(e) => setRequirements(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Duties"
-        value={duties}
-        onChange={(e) => setDuties(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Notes"
-        value={notes}
-        onChange={(e) => setNotes(e.target.value)}
-      />
-      <button type="submit">Add Job</button>
+    <form className="job-form" onSubmit={handleSubmit}>
+      <h2 className="form-title">Add New Job</h2>
+      <div className="form-grid">
+        <input
+          type="text"
+          placeholder="Company"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Role"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value as Job["status"])}
+        >
+          <option value="applied">Applied</option>
+          <option value="interviewed">Interviewed</option>
+          <option value="denied">Denied</option>
+        </select>
+        <input
+          type="date"
+          value={applicationDate}
+          onChange={(e) => setApplicationDate(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Contact Info"
+          value={contactInfo}
+          onChange={(e) => setContactInfo(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Requirements"
+          value={requirements}
+          onChange={(e) => setRequirements(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Duties"
+          value={duties}
+          onChange={(e) => setDuties(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Notes"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+        />
+      </div>
+      <button type="submit" className="submit-btn">
+        Add Job
+      </button>
     </form>
   );
 }

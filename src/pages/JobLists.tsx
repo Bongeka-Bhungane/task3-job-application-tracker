@@ -7,6 +7,7 @@ import Button from "../compontents/Button";
 import Search from "../compontents/Search";
 import Filter from "../compontents/Filter";
 import NavBar from "../compontents/NavBar";
+import Footer from "../compontents/Footer";
 
 export default function JobLists() {
   const [visible, setVisible] = useState(false);
@@ -69,7 +70,9 @@ export default function JobLists() {
           </div>
         </div>
       </div>
-      <div className="main-footer">footer</div>
+      <div className="main-footer">
+        <Footer />
+      </div>
     </div>
   );
 }

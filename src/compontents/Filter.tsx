@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
+import type { Job } from "../types"; // ✅ Import the type
 
 interface FilterProps {
-  jobs: any[];
-  onFilter: (filteredJobs: any[]) => void;
+  jobs: Job[];
+  onFilter: (filteredJobs: Job[]) => void;
 }
 
 export default function Filter({ jobs, onFilter }: FilterProps) {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [status, setStatus] = useState(searchParams.get("status") || "");
-  const [date, setDate] = useState(searchParams.get("date") || ""); // ✅ new date filter
+  const [date, setDate] = useState(searchParams.get("date") || "");
 
   const handleFilter = useCallback(() => {
     let filtered = [...jobs];
@@ -20,9 +20,7 @@ export default function Filter({ jobs, onFilter }: FilterProps) {
     }
 
     if (date) {
-      filtered = filtered.filter(
-        (job) => job.applicationDate && job.applicationDate === date
-      );
+      filtered = filtered.filter((job) => job.applicationDate === date);
     }
 
     onFilter(filtered);
@@ -30,35 +28,25 @@ export default function Filter({ jobs, onFilter }: FilterProps) {
 
   useEffect(() => {
     handleFilter();
-
-    const params: any = {};
+    const params: Record<string, string> = {};
     if (status) params.status = status;
     if (date) params.date = date;
     setSearchParams(params);
   }, [status, date, handleFilter, setSearchParams]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-        marginLeft: "10px",
-      }}
-    >
-      {/* ✅ Status Filter */}
+    <div style={{ display: "flex", gap: "10px" }}>
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
         style={{ padding: "6px" }}
       >
-        <option value="">Status</option>
+        <option value="">All Status</option>
         <option value="applied">Applied</option>
         <option value="interviewed">Interviewed</option>
         <option value="denied">Denied</option>
       </select>
 
-      {/* ✅ Date Filter */}
       <input
         type="date"
         value={date}

@@ -456,3 +456,181 @@ button[type="submit"]:hover {
   text-transform: uppercase;
   cursor: default;
 }
+
+.job-form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.job-form input,
+.job-form select {
+  padding: 10px 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.job-form input:focus,
+.job-form select:focus {
+  outline: none;
+  border-color: #4caf50;
+  box-shadow: 0 0 3px rgba(76, 175, 80, 0.5);
+}
+
+
+.submit-btn {
+  background-color: #709176;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+  background-color: #52796F;
+}
+
+.job-details {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-details:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.job-details h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  text-align: center;
+}
+
+.job-details p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #374151;
+}
+
+.job-details strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.job-details .status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.footer {
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-button {
+  background-color: #ffffff; 
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #52796F;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.footer-button:hover {
+  background-color: #4b5563;
+  transform: scale(1.1);
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #d1d5db; /* light gray for contrast */
+}
+
+.notfound-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* full viewport height */
+  text-align: center;
+  background-color: #f9fafb;
+  padding: 20px;
+}
+
+.notfound-page h1 {
+  font-size: 3rem;
+  color: #1f2937;
+  margin-bottom: 20px;
+}
+
+.error-image {
+  width: 250px;
+  max-width: 80%;
+  margin-bottom: 20px;
+}
+
+.notfound-page button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.notfound-page button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}

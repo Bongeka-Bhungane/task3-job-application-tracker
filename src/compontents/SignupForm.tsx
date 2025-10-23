@@ -4,11 +4,8 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { Navigate } from "react-router-dom";
 
-interface SignupFormProps {
-  onSignup: () => void;
-}
-
-const SignupForm: React.FC<SignupFormProps> = ({ onSignup }) => {
+// SignupForm does not accept props
+const SignupForm: React.FC = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -41,6 +38,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSignup }) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser),
+        
       });
 
       if (!createRes.ok) {

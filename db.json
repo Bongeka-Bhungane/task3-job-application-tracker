@@ -1,74 +1,77 @@
 {
   "users": [
     {
-      "id": "0155",
-      "name": "Bongeka",
+      "id": "b07b",
+      "name": "Bongeka ",
       "surname": "Bhungane",
       "email": "angelabhungane@gmail.com",
       "phone": "0832964212",
       "password": "2001",
       "jobs": [
         {
-          "id": 1758610053702,
-          "title": "jrn dev",
-          "company": "transnet",
-          "status": "interviewed",
-          "applicationDate": "2025-09-01",
-          "contactInfo": "transnet@gmail.net",
-          "location": "durban",
-          "description": "gjyrkktry",
-          "requirements": "dzdhjtr",
-          "duties": "tdjytdd",
-          "notes": "jhdgtzasht"
-        }
-      ]
-    },
-    {
-      "id": "89d9",
-      "name": "Bongeka",
-      "surname": "ndlove",
-      "email": "angelandlovu@gmail.com",
-      "phone": "0832964212",
-      "password": "2001",
-      "jobs": [
-        {
-          "id": 1758616438663,
-          "title": "waiter",
-          "company": "desiny",
-          "status": "denied",
-          "applicationDate": "2025-09-09",
-          "contactInfo": "desinyworld@gmail.com",
-          "location": "paris",
-          "description": "thtgrjytgrs",
-          "requirements": "zrarwse\\a",
-          "duties": "gfxjytdkiuj",
-          "notes": "hmjykxrsrxt"
-        },
-        {
-          "id": 1758621890139,
-          "title": "yhfjyfhj",
-          "company": "gvvduys\\gd",
+          "id": 1761208030416,
+          "title": "dwq",
+          "company": "ae3qwrt4",
           "status": "applied",
-          "applicationDate": "2025-09-16",
-          "contactInfo": "ggfxjtg@gdst.bvgjyh",
-          "location": "gcztg",
-          "description": "yhxiy",
-          "requirements": "jfyhi",
-          "duties": "gdxht",
-          "notes": ""
+          "applicationDate": "2025-10-23",
+          "contactInfo": "ertw4RYT",
+          "location": "W35Y5",
+          "description": "36T53E4",
+          "requirements": "YQ5REYR",
+          "duties": "534Y54EW",
+          "notes": "65Y7654E"
         },
         {
-          "id": 1758626659667,
-          "title": "hjf",
-          "company": "ffdzhtg",
+          "id": 1761208049849,
+          "title": "EDGTRFE",
+          "company": "REGDHGRD",
           "status": "interviewed",
-          "applicationDate": "2025-09-23",
-          "contactInfo": "hcvj",
-          "location": "jyhj",
-          "description": "ugc",
-          "requirements": "jkcyhf",
-          "duties": "hgh",
-          "notes": "ku"
+          "applicationDate": "2025-10-14",
+          "contactInfo": "\\RFS",
+          "location": "FGRF",
+          "description": "DGRFEDS",
+          "requirements": "GDSGRF",
+          "duties": "GERSDTR",
+          "notes": "FDGFD"
+        },
+        {
+          "id": 1761208072203,
+          "title": "RTWEST",
+          "company": "RSERD",
+          "status": "denied",
+          "applicationDate": "2025-09-28",
+          "contactInfo": "SRTER",
+          "location": "RFYGTRE",
+          "description": "FDSG",
+          "requirements": "RFTG",
+          "duties": "GRTR",
+          "notes": "RFFS\\Z"
+        },
+        {
+          "id": 1761208204556,
+          "title": "6U5RDU",
+          "company": "6TUYT",
+          "status": "applied",
+          "applicationDate": "2025-10-22",
+          "contactInfo": "yrtry",
+          "location": "hfghf",
+          "description": "dsyhtds",
+          "requirements": "fht",
+          "duties": "ht",
+          "notes": "gjf"
+        },
+        {
+          "id": 1761208929156,
+          "title": "iuygviyg",
+          "company": "hviyugv",
+          "status": "applied",
+          "applicationDate": "2025-10-15",
+          "contactInfo": "gyigiy",
+          "location": "giy",
+          "description": "fyiy",
+          "requirements": "iyg",
+          "duties": "iyg",
+          "notes": ""
         }
       ]
     }

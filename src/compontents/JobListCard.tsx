@@ -68,85 +68,90 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
 
   return (
     <div>
-      {jobs.length === 0 ? (
-        <p>No jobs available</p>
-      ) : (
-        jobs.map((job) => (
-          <div
-            key={job.id}
-            style={{
-              border: "1px solid #ccc",
-              padding: "15px",
-              margin: "10px",
-              borderRadius: "8px",
-            }}
-          >
-            <h3>{job.title}</h3>
-            <p>
-              <strong>Company:</strong> {job.company}
-            </p>
-            <p>
-              <strong>Date Applied:</strong> {job.applicationDate}
-            </p>
-            <p>
-              <strong>Status:</strong>{" "}
-              <select
-                value={job.status}
-                onChange={(e) =>
-                  handleStatusChange(job.id, e.target.value as Job["status"])
-                }
-              >
-                <option value="applied">Applied</option>
-                <option value="interviewed">Interviewed</option>
-                <option value="denied">Denied</option>
-              </select>
-            </p>
-            <p>
-              <strong>Contact Info:</strong> {job.contactInfo}
-            </p>
-            <p>
-              <strong>Location:</strong> {job.location || "N/A"}
-            </p>
-
+      <div className="job-list-card">
+        {jobs.length === 0 ? (
+          <p>No jobs available</p>
+        ) : (
+          jobs.map((job) => (
             <div
-              className="button-container"
-              style={{ display: "flex", gap: "10px" }}
-            >
-              <Button
-                name="View More"
-                color="#fff"
-                backgroundColor="#007BFF"
-                onClick={() => setOpenJobId(job.id)}
-              />
-              <Button
-                name="Delete"
-                color="#fff"
-                backgroundColor="#DC3545"
-                onClick={() => handleDelete(job.id)}
-              />
-            </div>
-
-            {/* Modal */}
-            <Modal
-              isOpen={openJobId === job.id}
-              onRequestClose={() => setOpenJobId(null)}
+              key={job.id}
               style={{
-                overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
-                content: { width: "50%", height: "50%", margin: "auto" },
+                border: "1px solid #ccc",
+                padding: "15px",
+                margin: "10px",
+                borderRadius: "8px",
               }}
-              ariaHideApp={false}
             >
-              <JobDetails job={job} setJobs={setJobs} />
-              <Button
-                name="Close"
-                color="#fff"
-                backgroundColor="#DC3545"
-                onClick={() => setOpenJobId(null)}
-              />
-            </Modal>
-          </div>
-        ))
-      )}
+              <div className="card-content">
+                <div className="info">
+                  <h2>{job.company}</h2>
+                  <p> {job.title}</p>
+                  <p> {job.applicationDate}</p>
+                </div>
+
+                <div className="button-container">
+                  <p className="status">
+                    {" "}
+                    <select
+                      value={job.status}
+                      onChange={(e) =>
+                        handleStatusChange(
+                          job.id,
+                          e.target.value as Job["status"]
+                        )
+                      }
+                    >
+                      <option value="applied">Applied</option>
+                      <option value="interviewed">Interviewed</option>
+                      <option value="denied">Denied</option>
+                    </select>
+                  </p>
+                  <Button
+                    name="View More"
+                    color="#000000ff"
+                    backgroundColor="#ffffffff"
+                    onClick={() => setOpenJobId(job.id)}
+                    className="view-more"
+                  />
+                  <Button
+                    name="edit"
+                    color="#000000ff"
+                    backgroundColor="#ffffffff"
+                    onClick={() => handleDelete(job.id)}
+                    className="edit-delete"
+                  />
+                  <Button
+                    name="Delete"
+                    color="#000000ff"
+                    backgroundColor="#fdfbfbff"
+                    onClick={() => handleDelete(job.id)}
+                    className="edit-delete"
+                  />
+                </div>
+              </div>
+
+              {/* Modal */}
+              <Modal
+                isOpen={openJobId === job.id}
+                onRequestClose={() => setOpenJobId(null)}
+                style={{
+                  overlay: { backgroundColor: "rgba(0,0,0,0.5)" },
+                  content: { width: "50%", height: "50%", margin: "auto" },
+                }}
+                ariaHideApp={false}
+              >
+                <JobDetails job={job} setJobs={setJobs} />
+                <Button
+                  name="Close"
+                  color="#fff"
+                  backgroundColor="#DC3545"
+                  onClick={() => setOpenJobId(null)}
+                />
+              </Modal>
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

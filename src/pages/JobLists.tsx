@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import Button from "../compontents/Button";
 import Search from "../compontents/Search";
 import Filter from "../compontents/Filter";
+import NavBar from "../compontents/NavBar";
 
 export default function JobLists() {
   const [visible, setVisible] = useState(false);
@@ -22,40 +23,53 @@ export default function JobLists() {
   }, []);
 
   return (
-    <div>
-      <div
-        style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}
-      >
-        <Search jobs={jobs} onSearch={setDisplayJobs} />
-        <Filter jobs={jobs} onFilter={setDisplayJobs} />
+    <div className="main-page">
+      <div className="main-nav">
+        <NavBar />
       </div>
-      <JobListCard jobs={displayJobs} setJobs={setJobs} />
 
-      <div className="button-container">
-        <Button
-          name="Add Job"
-          color="green"
-          className="round-button"
-          onClick={() => setVisible(true)}
-        />
-        <Modal
-          isOpen={visible}
-          onRequestClose={() => setVisible(false)}
-          style={{
-            overlay: { background: "#818D92" },
-            content: { width: "50%", height: "50%", margin: "auto" },
-          }}
-          ariaHideApp={false}
-        >
-          <JobForm
-            onJobAdded={(newJob) => {
-              setJobs((prev) => [...prev, newJob]);
-              setDisplayJobs((prev) => [...prev, newJob]);
-              setVisible(false);
-            }}
-          />
-        </Modal>
+      <div className="content-area">
+        <div className="search-filter-container">
+          <div className="search-container">
+            <Search jobs={jobs} onSearch={setDisplayJobs} />
+          </div>
+          <div className="filter-container">
+            <Filter jobs={jobs} onFilter={setDisplayJobs} />
+          </div>
+        </div>
+        <div className="job-lists-container">
+          <div className="job-card-container">
+            <JobListCard jobs={displayJobs} setJobs={setJobs} />
+          </div>
+
+          <div className="add-button">
+            <Button
+              name="Add Job"
+              color="green"
+              className="round-button"
+              onClick={() => setVisible(true)}
+            />
+            <Modal
+              isOpen={visible}
+              onRequestClose={() => setVisible(false)}
+              style={{
+                overlay: { background: "#818D92" },
+                content: { width: "50%", height: "50%", margin: "auto" },
+              }}
+              ariaHideApp={false}
+            >
+              <JobForm
+                onJobAdded={(newJob) => {
+                  setJobs((prev) => [...prev, newJob]);
+                  setDisplayJobs((prev) => [...prev, newJob]);
+                  setVisible(false);
+                }}
+              />
+            </Modal>
+          </div>
+        </div>
       </div>
+      <div className="main-footer">footer</div>
     </div>
   );
 }

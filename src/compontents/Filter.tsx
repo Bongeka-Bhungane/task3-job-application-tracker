@@ -8,36 +8,63 @@ interface FilterProps {
 
 export default function Filter({ jobs, onFilter }: FilterProps) {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const [status, setStatus] = useState(searchParams.get("status") || "");
+  const [date, setDate] = useState(searchParams.get("date") || ""); // ✅ new date filter
 
   const handleFilter = useCallback(() => {
-    if (!status) {
-      onFilter(jobs);
-    } else {
-      const filtered = jobs.filter((job) => job.status === status);
-      onFilter(filtered);
+    let filtered = [...jobs];
+
+    if (status) {
+      filtered = filtered.filter((job) => job.status === status);
     }
-  }, [status, jobs, onFilter]);
+
+    if (date) {
+      filtered = filtered.filter(
+        (job) => job.applicationDate && job.applicationDate === date
+      );
+    }
+
+    onFilter(filtered);
+  }, [status, date, jobs, onFilter]);
 
   useEffect(() => {
     handleFilter();
-    if (status) {
-      setSearchParams({ status });
-    } else {
-      setSearchParams({});
-    }
-  }, [status, handleFilter, setSearchParams]);
+
+    const params: any = {};
+    if (status) params.status = status;
+    if (date) params.date = date;
+    setSearchParams(params);
+  }, [status, date, handleFilter, setSearchParams]);
 
   return (
-    <select
-      value={status}
-      onChange={(e) => setStatus(e.target.value)}
-      style={{ marginLeft: "10px", padding: "6px" }}
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        marginLeft: "10px",
+      }}
     >
-      <option value="">All Status</option>
-      <option value="applied">Applied</option>
-      <option value="interviewed">Interviewed</option>
-      <option value="denied">Denied</option>
-    </select>
+      {/* ✅ Status Filter */}
+      <select
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+        style={{ padding: "6px" }}
+      >
+        <option value="">Status</option>
+        <option value="applied">Applied</option>
+        <option value="interviewed">Interviewed</option>
+        <option value="denied">Denied</option>
+      </select>
+
+      {/* ✅ Date Filter */}
+      <input
+        type="date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        style={{ padding: "6px" }}
+      />
+    </div>
   );
 }

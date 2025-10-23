@@ -29,16 +29,16 @@ export default function JobLists() {
       </div>
 
       <div className="content-area">
-        <div className="search-filter-container">
-          <div className="search-container">
-            <Search jobs={jobs} onSearch={setDisplayJobs} />
-          </div>
-          <div className="filter-container">
-            <Filter jobs={jobs} onFilter={setDisplayJobs} />
-          </div>
-        </div>
         <div className="job-lists-container">
           <div className="job-card-container">
+            <div className="search-filter-container">
+              <div className="search-container">
+                <Search jobs={jobs} onSearch={setDisplayJobs} />
+              </div>
+              <div className="filter-container">
+                <Filter jobs={jobs} onFilter={setDisplayJobs} />
+              </div>
+            </div>
             <JobListCard jobs={displayJobs} setJobs={setJobs} />
           </div>
 

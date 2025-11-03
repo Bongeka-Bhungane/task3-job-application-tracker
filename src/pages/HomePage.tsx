@@ -2,35 +2,39 @@ import React from "react";
 import HomeNav from "../compontents/HomeNav";
 import Text from "../compontents/Text";
 import { Link } from "react-router-dom";
+import welcomeImage from "../assets/images/welcome-picture.png"
 
 export default function HomePage() {
   return (
-    <div className="main-page">
+    <div className="home-page">
       <div className="home-nav">
         <HomeNav />
       </div>
 
       <div className="landing-content">
         <div className="main-left">
-          <Text variant="h2" className="heading">
+          <Text variant="h2" className="main-heading">
             Welcome to Job Application Tracker
           </Text>
-          <Text variant="p" className="heading">
+          <Text variant="p" className="main-para">
             your personal assistant for landing your dream job. <br />
             Stay organized, stay motivated, <br />
             and take control of your career journey!
           </Text>
           <div className="btn-group">
-            <Link to="/register" className="home-nav-btn">
+            <Link to="/register" className="submit-btn">
               Sign-up
             </Link>
-            <Link to="/login" className="home-nav-btn">
+            <Link to="/login" className="submit-btn">
               Log-in
             </Link>
           </div>
         </div>
         <div className="main-right">
-          <img src="../assets/images/welcome-picture.png" alt="person holding a laptop" />
+          <img
+            src={welcomeImage}
+            alt="person holding a laptop"
+          />
         </div>
       </div>
     </div>

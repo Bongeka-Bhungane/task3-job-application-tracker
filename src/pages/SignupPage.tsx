@@ -5,20 +5,18 @@ export default function SignupPage() {
   return (
     <div className="signup-page">
       <div className="signup-content-left">
-        <SignupForm
-          onSignup={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />
+        <SignupForm />
       </div>
+
       <div className="signup-content-right">
         <div className="right-logo">
           <img src="/src/assets/images/logo-white.png" alt="Logo" />
         </div>
+
         <div className="right-slogan">
           <h1>
-            Every application is a step closer to your dream job — <br /> track
-            them with confidence.
+            Every application is a step closer to your dream job — <br />
+            track them with confidence.
           </h1>
         </div>
       </div>

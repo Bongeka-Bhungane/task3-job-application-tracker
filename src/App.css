@@ -217,6 +217,12 @@ button[type="submit"]:hover {
   padding: 20px;
 }
 
+.welcome-message {
+  background: #F5F3F3;
+  font-size: large;
+  font-weight: 400;
+}
+
 .status select {
   padding: 0.4rem 0.8rem;
   border-radius: 6px;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import type { Job, User } from "../types";
+import { useNavigate } from "react-router-dom";
 
 interface JobFormProps {
   onJobAdded: (job: Job) => void;
@@ -27,6 +28,7 @@ export default function JobForm({ onJobAdded, existingJob }: JobFormProps) {
   );
   const [duties, setDuties] = useState(existingJob?.duties || "");
   const [notes, setNotes] = useState(existingJob?.notes || "");
+  const navigate = useNavigate();
 
   // ✅ Update form if a new job is passed in (e.g. when editing)
   useEffect(() => {
@@ -88,7 +90,7 @@ export default function JobForm({ onJobAdded, existingJob }: JobFormProps) {
     const updatedUser: User = await res.json();
     localStorage.setItem("user", JSON.stringify(updatedUser));
 
-    onJobAdded(jobToSave); 
+    onJobAdded(jobToSave);
 
     // Reset only if adding a new job
     if (!existingJob) {
@@ -176,7 +178,11 @@ export default function JobForm({ onJobAdded, existingJob }: JobFormProps) {
         />
       </div>
 
-      <button type="submit" className="submit-btn">
+      <button
+        type="submit"
+        className="submit-btn"
+        onClick={() => navigate("/jobs")}
+      >
         {existingJob ? "Update Job" : "Add Job"}
       </button>
     </form>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Job, User } from "../types";
 import Modal from "react-modal";
 import Button from "./Button";
@@ -94,7 +94,6 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
     setEditJob(updatedJob);
   };
 
-
   // ✅ Status badge colors
   const getStatusColor = (status: Job["status"]) => {
     switch (status) {
@@ -109,10 +108,18 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
     }
   };
 
+  useEffect(() => {}, [editJob]);
+
   return (
     <div className="job-list-card">
       {jobs.length === 0 ? (
-        <p>No jobs available</p>
+        <div className="welcome-message">
+          <h2>Welcome to job tracker app!!!</h2>
+          <p>
+            you have not added any jobs yet. <br />
+            please the "Add Job" button and <strong>get started</strong>
+          </p>
+        </div>
       ) : (
         jobs.map((job) => (
           <div
@@ -232,7 +239,7 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
         >
           <h2>Edit Job</h2>
           <JobForm
-            {...({ existingJob: editJob, onJobAdded: handleEdit })} // reuse form for editing
+            {...{ existingJob: editJob, onJobAdded: handleEdit }} // reuse form for editing
           />
           <Button
             name="Cancel"

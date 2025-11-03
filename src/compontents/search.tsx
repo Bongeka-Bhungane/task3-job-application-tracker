@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useState, useCallback } from "react";
 import type { Job } from "../types"; // ✅ Import type
 
 interface SearchProps {
@@ -8,8 +7,7 @@ interface SearchProps {
 }
 
 export default function Search({ jobs, onSearch }: SearchProps) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get("q") || "");
+  const [query, setQuery] = useState("");
 
   const handleSearch = useCallback(
     (q: string) => {
@@ -23,17 +21,15 @@ export default function Search({ jobs, onSearch }: SearchProps) {
     [jobs, onSearch]
   );
 
-  useEffect(() => {
-    handleSearch(query);
-    setSearchParams(query ? { q: query } : {});
-  }, [query, handleSearch, setSearchParams]);
-
   return (
     <input
       type="text"
       placeholder="Search by company or role"
       value={query}
-      onChange={(e) => setQuery(e.target.value)}
+      onChange={(e) => {
+        setQuery(e.target.value);
+        handleSearch(e.target.value);
+      }}
       style={{ marginBottom: "20px", padding: "8px", width: "300px" }}
     />
   );

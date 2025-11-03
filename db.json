@@ -1,71 +1,51 @@
 {
   "users": [
     {
-<<<<<<< HEAD
-      "id": "60c6",
+      "id": "0f30",
       "name": "Bongeka ",
       "surname": "Bhungane",
-=======
-      "id": "625f",
-      "name": "Bongeka e",
-      "surname": "Bhungan",
->>>>>>> main
       "email": "angelabhungane@gmail.com",
       "phone": "0832964212",
       "password": "2001",
       "jobs": [
         {
-<<<<<<< HEAD
-          "id": 1762165561495,
-          "title": "ihoii",
-          "company": "onp",
+          "id": 1762175323087,
+          "title": "full stack dev",
+          "company": "mlab6",
           "status": "applied",
           "applicationDate": "2025-11-03",
-          "contactInfo": "hol",
-          "location": "nmkolo",
-          "description": "ip",
-          "requirements": "ujbp",
-          "duties": "8iyvyu",
-          "notes": "ipbiup98iuy"
-        },
-        {
-          "id": 1762165616846,
-          "title": "full stack dev",
-          "company": "mlab",
-          "status": "interviewed",
-          "applicationDate": "2025-10-12",
-          "contactInfo": "gfxhytrxfuytfrxdfx",
-          "location": "pmb",
-          "description": "gszrd",
-          "requirements": "diploma",
-          "duties": "dzyed",
-          "notes": "zthedzytt"
-        },
-        {
-          "id": 1762167619456,
-          "title": "dev",
-          "company": "tdui6txt",
-          "status": "denied",
-          "applicationDate": "2025-10-21",
-          "contactInfo": "ugifcu",
-          "location": "ufuyu",
-          "description": "yfiuu",
-          "requirements": "hfo",
+          "contactInfo": "trhfdxh",
+          "location": "dfhg",
+          "description": "",
+          "requirements": "",
           "duties": "",
           "notes": ""
-=======
-          "id": 1760699800306,
-          "title": "fjytgfrzj",
-          "company": "gjtg",
+        },
+        {
+          "id": 1762175606249,
+          "title": "intern",
+          "company": "transnet",
           "status": "applied",
-          "applicationDate": "2025-10-07",
-          "contactInfo": "0124563543",
-          "location": "jhvg",
-          "description": "dhg",
-          "requirements": "cvgj",
-          "duties": "hgxky",
-          "notes": "yhkttg"
->>>>>>> main
+          "applicationDate": "2025-10-28",
+          "contactInfo": "dhshbgus",
+          "location": "durban",
+          "description": "dsgrs",
+          "requirements": "fgdrf",
+          "duties": "fdhzcg",
+          "notes": "gfthy"
+        },
+        {
+          "id": 1762177519509,
+          "title": "gxyrdxy",
+          "company": "gdfxdr",
+          "status": "interviewed",
+          "applicationDate": "2025-10-22",
+          "contactInfo": "",
+          "location": "",
+          "description": "",
+          "requirements": "",
+          "duties": "",
+          "notes": ""
         }
       ]
     }

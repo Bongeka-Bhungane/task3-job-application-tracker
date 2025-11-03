@@ -7,34 +7,7 @@
       "email": "angelabhungane@gmail.com",
       "phone": "0832964212",
       "password": "2001",
-      "jobs": [
-        {
-          "id": 1761224075210,
-          "title": "jhgvy",
-          "company": "tjyhfgy",
-          "status": "interviewed",
-          "applicationDate": "2025-10-23",
-          "contactInfo": "tjutf",
-          "location": "jyhgck",
-          "description": "gvkyh",
-          "requirements": "hjkyh",
-          "duties": "gkujgku",
-          "notes": "gfjyhf"
-        },
-        {
-          "id": 1761225276162,
-          "title": "web deloper",
-          "company": "transnet",
-          "status": "denied",
-          "applicationDate": "2025-10-21",
-          "contactInfo": "xtgfrxujtygfx",
-          "location": "durban",
-          "description": "gntgfz",
-          "requirements": "",
-          "duties": "",
-          "notes": ""
-        }
-      ]
+      "jobs": []
     }
   ]
 }

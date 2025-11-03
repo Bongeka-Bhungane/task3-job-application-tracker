@@ -603,34 +603,48 @@ button[type="submit"]:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* full viewport height */
+  height: 100vh;
+  background-color: #f8f9fa;
   text-align: center;
-  background-color: #f9fafb;
+  color: #333;
+  font-family: "Poppins", sans-serif;
   padding: 20px;
 }
 
-.notfound-page h1 {
-  font-size: 3rem;
-  color: #1f2937;
+.notfound-title {
+  font-size: 2.5rem;
   margin-bottom: 20px;
+  color: #1e90ff;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .error-image {
-  width: 250px;
-  max-width: 80%;
-  margin-bottom: 20px;
+  width: 200px;
+  height: auto;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeInImage 1.2s ease-in-out forwards;
 }
 
-.notfound-page button {
-  padding: 12px 30px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.notfound-page button:hover {
-  opacity: 0.9;
-  transform: scale(1.05);
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+

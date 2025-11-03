@@ -1,3 +1,40 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "60c6",
+      "name": "Bongeka ",
+      "surname": "Bhungane",
+      "email": "angelabhungane@gmail.com",
+      "phone": "0832964212",
+      "password": "2001",
+      "jobs": [
+        {
+          "id": 1762165561495,
+          "title": "ihoii",
+          "company": "onp",
+          "status": "applied",
+          "applicationDate": "2025-11-03",
+          "contactInfo": "hol",
+          "location": "nmkolo",
+          "description": "ip",
+          "requirements": "ujbp",
+          "duties": "8iyvyu",
+          "notes": "ipbiup98iuy"
+        },
+        {
+          "id": 1762165616846,
+          "title": "dev",
+          "company": "mlab",
+          "status": "interviewed",
+          "applicationDate": "2025-10-12",
+          "contactInfo": "gfxhytrxfuytfrxdfx",
+          "location": "pmb",
+          "description": "gszrd",
+          "requirements": "diploma",
+          "duties": "dzyed",
+          "notes": "zthedzytt"
+        }
+      ]
+    }
+  ]
 }

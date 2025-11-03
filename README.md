@@ -58,11 +58,6 @@ This project was built as part of **Task 3 - ReactTS Coursework**.
 
 ---
 
-##  Folder Structure (example)
-
-
----
-
 ##  Setup & Run Locally
 
 1. Clone the repository
@@ -89,19 +84,19 @@ npm run dev
 
 ### Concepts Demonstrated
 
-Arrays & array methods
+- Arrays & array methods
 
-Objects & object methods
+- Objects & object methods
 
-LocalStorage persistence
+- LocalStorage persistence
 
-React components, props, and state
+- React components, props, and state
 
-React Router (queries, parameters, protected routes)
+- React Router (queries, parameters, protected routes)
 
-JSON Server CRUD integration
+- JSON Server CRUD integration
 
-Responsive web design
+- Responsive web design
 
 ### Author
 

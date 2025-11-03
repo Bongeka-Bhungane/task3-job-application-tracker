@@ -46,12 +46,11 @@ const SignupForm: React.FC = () => {
         return;
       }
 
-      const user = await createRes.json(); // ← this has numeric `id`
+      const user = await createRes.json();
       localStorage.setItem("user", JSON.stringify(user));
 
       alert("User registered successfully!");
 
-      // ✅ only redirect AFTER success
       setGoToLogin(true);
 
       // reset form
@@ -149,7 +148,6 @@ const SignupForm: React.FC = () => {
           </div>
         </div>
 
-        {/* ✅ remove onClick, let handleSubmit control navigation */}
         <button type="submit">Register</button>
       </form>
     </div>

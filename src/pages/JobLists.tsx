@@ -4,7 +4,7 @@ import JobListCard from "../compontents/JobListCard";
 import type { Job, User } from "../types";
 import Modal from "react-modal";
 import Button from "../compontents/Button";
-import Search from "../compontents/Search";
+import Search from "../compontents/search";
 import Filter from "../compontents/Filter";
 import NavBar from "../compontents/NavBar";
 import Footer from "../compontents/Footer";

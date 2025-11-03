@@ -1,13 +1,3 @@
 {
-  "users": [
-    {
-      "id": "4f30",
-      "name": "Bongeka ",
-      "surname": "Bhungane",
-      "email": "angelabhungane@gmail.com",
-      "phone": "0832964212",
-      "password": "2001",
-      "jobs": []
-    }
-  ]
+  "users": []
 }

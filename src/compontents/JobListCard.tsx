@@ -71,37 +71,29 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
   };
 
   // ✅ Handle job edit
-  const handleEdit = (job: Job) => {
-    setEditJob(job);
-  };
-
-  const handleUpdate = async (updatedJob: Job) => {
+  const handleEdit = async (job: Job) => {
     const storedUser = localStorage.getItem("user");
     if (!storedUser) return;
     const user: User = JSON.parse(storedUser);
 
-    const updatedJobs = jobs.map((job) =>
-      job.id === updatedJob.id ? updatedJob : job
-    );
-
-    const res = await fetch(`http://localhost:5000/users/${user.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ jobs: updatedJobs }),
-    });
-
+    // Fetch fresh user data to ensure we have the latest jobs from the server
+    const res = await fetch(`http://localhost:5000/users/${user.id}`);
     if (!res.ok) {
-      alert("Failed to update job");
+      alert("Failed to fetch job data");
       return;
     }
 
-    setJobs(updatedJobs);
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ ...user, jobs: updatedJobs })
-    );
-    setEditJob(null);
+    const data: User = await res.json();
+    const updatedJob = data.jobs.find((j: Job) => j.id === job.id);
+
+    if (!updatedJob) {
+      alert("Job not found on server");
+      return;
+    }
+
+    setEditJob(updatedJob);
   };
+
 
   // ✅ Status badge colors
   const getStatusColor = (status: Job["status"]) => {
@@ -240,7 +232,7 @@ export default function JobListCard({ jobs, setJobs }: JobListCardProps) {
         >
           <h2>Edit Job</h2>
           <JobForm
-            {...({ existingJob: editJob, onJobAdded: handleUpdate } as any)} // reuse form for editing
+            {...({ existingJob: editJob, onJobAdded: handleEdit })} // reuse form for editing
           />
           <Button
             name="Cancel"

@@ -3,8 +3,8 @@ import SignupForm from "../compontents/SignupForm";
 
 export default function SignupPage() {
   return (
-    <div className="signup-page">
-      <div className="signup-content-left">
+    <div>
+      <div className="login-content-left">
         <SignupForm />
       </div>
 

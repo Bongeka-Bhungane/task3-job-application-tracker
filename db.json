@@ -1,14 +1,21 @@
 {
   "users": [
     {
+<<<<<<< HEAD
       "id": "60c6",
       "name": "Bongeka ",
       "surname": "Bhungane",
+=======
+      "id": "625f",
+      "name": "Bongeka e",
+      "surname": "Bhungan",
+>>>>>>> main
       "email": "angelabhungane@gmail.com",
       "phone": "0832964212",
       "password": "2001",
       "jobs": [
         {
+<<<<<<< HEAD
           "id": 1762165561495,
           "title": "ihoii",
           "company": "onp",
@@ -46,6 +53,19 @@
           "requirements": "hfo",
           "duties": "",
           "notes": ""
+=======
+          "id": 1760699800306,
+          "title": "fjytgfrzj",
+          "company": "gjtg",
+          "status": "applied",
+          "applicationDate": "2025-10-07",
+          "contactInfo": "0124563543",
+          "location": "jhvg",
+          "description": "dhg",
+          "requirements": "cvgj",
+          "duties": "hgxky",
+          "notes": "yhkttg"
+>>>>>>> main
         }
       ]
     }
